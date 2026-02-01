@@ -1,8 +1,8 @@
-let noCount = 0;
 const audio = document.getElementById('bg-music');
+let noCount = 0;
 
-// MUSIC PATHS (Replace with your file names)
-const musicTracks = {
+// Update your music file paths here
+const tracks = {
     1: 'assets/song1.mp3',
     2: 'assets/song2.mp3',
     3: 'assets/song3.mp3',
@@ -12,102 +12,78 @@ const musicTracks = {
 };
 
 function nextPage(pageNo) {
-    const current = document.querySelector('section.active');
-    current.classList.remove('active');
-    
+    document.querySelector('section.active').classList.remove('active');
     setTimeout(() => {
-        const next = document.getElementById(`page-${pageNo}`);
-        next.classList.add('active');
-
-        // Play music for that page
-        if (musicTracks[pageNo]) {
-            audio.src = musicTracks[pageNo];
-            audio.play().catch(e => console.log("Audio needs user click first"));
+        document.getElementById(`page-${pageNo}`).classList.add('active');
+        if (tracks[pageNo]) {
+            audio.src = tracks[pageNo];
+            audio.play().catch(() => console.log("Music ready after click"));
         }
-
-        // Initialize heart stars if on page 4
-        if (pageNo === 4) createHeartStars();
-    }, 500);
+        if (pageNo === 4) createHeartShape();
+    }, 100);
 }
 
-function createHeartStars() {
+function createHeartShape() {
     const area = document.getElementById('star-messages-area');
     area.innerHTML = "";
     const complements = [
-        "Your smile lights up my whole world",
-        "You are my safest place to be",
-        "I love the way you think",
-        "Every day with you is a gift",
-        "You're the most beautiful soul I know",
-        "I'm so lucky to have you"
+        "Your smile is my favorite view", "I love the way you think", 
+        "You're my safest place", "You make life feel like a dream",
+        "I'm so proud of you", "You're my best friend",
+        "You're the most beautiful soul", "I love you more every day"
     ];
 
-    const points = [
-        {x: 50, y: 15}, {x: 25, y: 25}, {x: 75, y: 25},
-        {x: 15, y: 50}, {x: 85, y: 50}, {x: 50, y: 85}
-    ];
-
-    points.forEach((p, i) => {
-        let star = document.createElement('div');
+    for (let i = 0; i < 12; i++) {
+        const t = (i / 12) * 2 * Math.PI;
+        const x = 16 * Math.pow(Math.sin(t), 3);
+        const y = -(13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
+        
+        const star = document.createElement('div');
         star.className = 'msg-star';
-        star.innerHTML = "✨";
-        star.style.left = p.x + "%";
-        star.style.top = p.y + "%";
+        star.innerHTML = "💖";
+        star.style.left = (50 + x * 2.5) + "%";
+        star.style.top = (45 + y * 2.5) + "%";
         
         star.onclick = () => {
-            const existing = document.querySelector('.scroll-msg');
-            if(existing) existing.remove();
-            
-            let scroll = document.createElement('div');
-            scroll.className = 'scroll-msg';
-            scroll.innerText = complements[i];
-            area.appendChild(scroll);
-            
-            // Show next button after clicking a few stars
-            if(i >= points.length - 2) document.getElementById('next-from-stars').style.display = "block";
+            alert(complements[i % complements.length]);
+            if(i >= 10) document.getElementById('next-from-stars').style.display = "block";
         };
         area.appendChild(star);
-    });
+    }
 }
 
 function dropPhotos() {
     document.getElementById('drop-btn').style.display = "none";
-    const photos = document.querySelectorAll('.polaroid');
-    photos.forEach((p, i) => {
+    document.querySelectorAll('.polaroid').forEach((p, i) => {
         setTimeout(() => {
             p.style.transform = `translateY(0) rotate(${Math.random() * 20 - 10}deg)`;
-        }, i * 500);
+        }, i * 600);
     });
-    setTimeout(() => {
-        document.getElementById('final-btn').style.display = "block";
-    }, photos.length * 500 + 1000);
+    setTimeout(() => document.getElementById('final-btn').style.display = "block", 2500);
 }
 
 function moveNoButton() {
     noCount++;
-    if (noCount < 5) {
-        const x = Math.random() * (window.innerWidth - 150);
-        const y = Math.random() * (window.innerHeight - 150);
-        const btn = document.getElementById('no-btn');
+    const btn = document.getElementById('no-btn');
+    if (noCount < 6) {
         btn.style.position = 'fixed';
-        btn.style.left = x + 'px';
-        btn.style.top = y + 'px';
+        btn.style.left = Math.random() * 70 + 'vw';
+        btn.style.top = Math.random() * 70 + 'vh';
     } else {
-        document.getElementById('no-btn').style.display = 'none';
+        btn.innerHTML = "Yes! ❤️";
+        btn.onmouseover = null;
+        btn.onclick = () => celebrate();
     }
 }
 
-function celebrate(choice) {
-    document.getElementById('celebration-msg').innerHTML = "<h2>Yay! You just made me the happiest person! ❤️</h2>";
-    setInterval(createHeartConfetti, 300);
-}
-
-function createHeartConfetti() {
-    const heart = document.createElement('div');
-    heart.innerHTML = "❤️";
-    heart.className = "confetti-heart";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = Math.random() * 20 + 10 + "px";
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 4000);
+function celebrate() {
+    document.getElementById('celebration-msg').innerHTML = "<h1>You just made me the happiest! ❤️</h1>";
+    setInterval(() => {
+        const c = document.createElement('div');
+        c.className = 'confetti';
+        c.innerHTML = "❤️";
+        c.style.left = Math.random() * 100 + "vw";
+        document.body.appendChild(c);
+        setTimeout(() => c.remove(), 3000);
+    }, 200);
 }

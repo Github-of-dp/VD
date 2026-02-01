@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <div id="star-container"></div>
     <audio id="bg-music" loop></audio>
 
@@ -20,31 +21,36 @@
 
     <section id="page-2">
         <div class="content">
-            <h2>Our story isn't just a series of dates...</h2>
-            <p>It’s a collection of all the little ways you’ve changed my life.</p>
-            <button onclick="nextPage(3)">How have I changed it?</button>
+            <h2>This is a story about us.</h2>
+            <p>It’s not just a series of dates, it's how you've changed my world into something beautiful.</p>
+            <button onclick="nextPage(3)">How have you changed it?</button>
         </div>
     </section>
 
     <section id="page-3">
-        <div class="content scrollable">
+        <div class="content">
+            <h2>Our Journey</h2>
             <div class="chapter-box">
-                <h2>Chapter One</h2>
-                <p>The day I realized you were special.</p>
-                <hr>
-                <h2>Chapter Two</h2>
-                <p>The moments that made me like you more.</p>
-                <hr>
-                <h2>Chapter Three</h2>
-                <p>Every time you made me feel safe and happy.</p>
+                <div class="chapter">
+                    <h3>Chapter One: The Spark</h3>
+                    <p>It wasn't just the day we met, it was the moment I realized that talking to you felt like coming home. You have this way of making the world feel quiet and safe.</p>
+                </div>
+                <div class="chapter">
+                    <h3>Chapter Two: The Growth</h3>
+                    <p>The more I learned about you—your dreams, your fears, and your little habits—the more I realized I was finding a partner in everything.</p>
+                </div>
+                <div class="chapter">
+                    <h3>Chapter Three: The Safe Haven</h3>
+                    <p>Through every high and low, you've been my peace. You are the person I want to tell everything to, first and last, every single day.</p>
+                </div>
             </div>
-            <button onclick="nextPage(4)">Continue...</button>
+            <button onclick="nextPage(4)">Wait, there's more...</button>
         </div>
     </section>
 
     <section id="page-4">
         <div class="content">
-            <p>Every star holds a little thought I have about you.</p>
+            <p>Every star holds a thought I have about you.</p>
             <div id="star-messages-area"></div>
             <button id="next-from-stars" style="display:none;" onclick="nextPage(5)">There’s one more thing...</button>
         </div>
@@ -52,7 +58,6 @@
 
     <section id="page-5">
         <div class="content">
-            <p>Before I ask you something important...</p>
             <h2>Let’s look at us.</h2>
             <button id="drop-btn" onclick="dropPhotos()">Open memories 📂</button>
             <div id="photo-wall">
@@ -66,9 +71,9 @@
 
     <section id="page-6">
         <div class="content">
-            <h1>Will you be my Valentine? 💗</h1>
+            <h1 class="question-text">Will you be my Valentine? 💗</h1>
             <div class="choice-bins">
-                <button class="yes-btn" onclick="celebrate('Of Course')">Of course!</button>
+                <button class="yes-btn" onclick="celebrate('Yes')">Of course!</button>
                 <button id="no-btn" onmouseover="moveNoButton()">No</button>
             </div>
             <div id="celebration-msg"></div>

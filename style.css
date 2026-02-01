@@ -1,7 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
+
+:root {
+    --love-red: #ff4d6d;
+    --soft-pink: #ffb7c5;
+    --glass: rgba(255, 255, 255, 0.12);
+}
+
 body {
     margin: 0;
-    background: linear-gradient(135deg, #1a0a1a 0%, #4a1e36 100%);
-    color: #fff0f3;
+    background: radial-gradient(circle at center, #3d1428 0%, #1a0a1a 100%);
+    color: #fff;
     font-family: 'Poppins', sans-serif;
     overflow: hidden;
     height: 100vh;
@@ -15,83 +23,110 @@ section {
     justify-content: center;
     align-items: center;
     opacity: 0;
-    transition: opacity 1s ease-in-out;
+    transform: scale(0.95);
+    transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
     pointer-events: none;
     text-align: center;
 }
 
 section.active {
     opacity: 1;
+    transform: scale(1);
     pointer-events: all;
 }
 
-.content { max-width: 85%; }
+.content {
+    background: var(--glass);
+    backdrop-filter: blur(15px);
+    padding: 30px;
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    max-width: 500px;
+    width: 85%;
+}
 
-/* Heart Stars Area */
+h1, h2 {
+    font-family: 'Dancing Script', cursive;
+    color: var(--soft-pink);
+    margin-bottom: 10px;
+}
+
+button {
+    background: var(--love-red);
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(255, 77, 109, 0.4);
+    transition: 0.3s;
+    margin: 10px;
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px var(--love-red);
+}
+
+.chapter-box {
+    text-align: left;
+    max-height: 250px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    padding: 10px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 15px;
+}
+
 #star-messages-area {
     position: relative;
     width: 320px;
-    height: 320px;
-    margin: 20px auto;
+    height: 300px;
+    margin: 0 auto;
 }
 
 .msg-star {
     position: absolute;
+    font-size: 1.8rem;
     cursor: pointer;
-    font-size: 2rem;
-    filter: drop-shadow(0 0 10px white);
-    transition: 0.3s;
+    animation: heartbeat 1.5s infinite ease-in-out;
 }
 
-/* Fixed Photo Wall */
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.3); opacity: 1; }
+}
+
 #photo-wall {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 10px;
     margin-top: 20px;
 }
 
 .polaroid {
-    width: 150px;
+    width: 140px;
     background: white;
-    padding: 10px 10px 25px 10px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-    transform: translateY(-120vh); /* Start off-screen */
-    transition: transform 0.8s cubic-bezier(.17,.67,.83,.67);
+    padding: 8px;
+    padding-bottom: 20px;
+    transform: translateY(-120vh);
+    transition: transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.polaroid img { width: 100%; height: 120px; object-fit: cover; }
+.polaroid img { width: 100%; height: 110px; object-fit: cover; }
 
-.scroll-msg {
-    background: #fff0f3;
-    color: #4a1e36;
-    padding: 10px;
-    border-radius: 8px;
-    margin-top: 20px;
-    font-weight: bold;
-    animation: fadeIn 0.5s;
-}
-
-/* Confetti */
-.confetti-heart {
+.confetti {
     position: fixed;
-    top: -5vh;
-    animation: fall 4s linear forwards;
+    top: -10vh;
+    font-size: 20px;
+    animation: fall 3s linear forwards;
 }
 
 @keyframes fall {
     to { transform: translateY(110vh) rotate(360deg); opacity: 0; }
 }
 
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-button {
-    background: var(--soft-pink);
-    border: none;
-    color: #4a1e36;
-    padding: 12px 25px;
-    border-radius: 25px;
-    cursor: pointer;
-    font-weight: bold;
-    margin: 10px;
-}
+#no-btn { transition: 0.2s ease-in-out; }
