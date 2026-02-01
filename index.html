@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Story Under The Stars</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="star-container"></div>
+    <audio id="bg-music" loop></audio>
+
+    <section id="page-1" class="active">
+        <div class="content">
+            <h1 class="fade-in">Hi, my favorite person.</h1>
+            <p class="fade-in delay-1">I made something small… just for you.</p>
+            <button class="fade-in delay-2" onclick="nextPage(2)">🌟 Begin</button>
+        </div>
+    </section>
+
+    <section id="page-2">
+        <div class="content">
+            <h2>This is a story about us.</h2>
+            <p>You get to choose how it continues...</p>
+            <div class="choice-bins">
+                <button onclick="nextPage(3)">I start smiling</button>
+                <button onclick="nextPage(3)">I fall a little harder</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="page-3">
+        <div class="content scrollable">
+            <h2>Chapter One</h2>
+            <p>The day I realized you were special.</p>
+            <hr>
+            <h2>Chapter Two</h2>
+            <p>The moments that made me like you more.</p>
+            <hr>
+            <h2>Chapter Three</h2>
+            <p>Every time you made me feel safe and happy.</p>
+            <button onclick="nextPage(4)">Continue...</button>
+        </div>
+    </section>
+
+    <section id="page-4">
+        <div class="content">
+            <p>Every star holds a little thought I have about you.</p>
+            <div id="star-messages-area">
+                </div>
+            <button id="next-from-stars" style="display:none;" onclick="nextPage(5)">There’s one more thing...</button>
+        </div>
+    </section>
+
+    <section id="page-5">
+        <div class="content">
+            <p>Before I ask you something important...</p>
+            <h2>Let’s look at us.</h2>
+            <button onclick="dropPhotos()">Open memories 📂</button>
+            <div id="photo-wall">
+                <img src="assets/photo1.jpg" class="polaroid" alt="Memory 1">
+                <img src="assets/photo2.jpg" class="polaroid" alt="Memory 2">
+                <img src="assets/photo3.jpg" class="polaroid" alt="Memory 3">
+            </div>
+            <button id="final-btn" style="display:none;" onclick="nextPage(6)">Finally...</button>
+        </div>
+    </section>
+
+    <section id="page-6">
+        <div class="content">
+            <p>After all this...</p>
+            <h1 class="question-text">Will you be my Valentine? 💗</h1>
+            <div class="choice-bins">
+                <button class="yes-btn" onclick="celebrate()">💘 Yes</button>
+                <button class="yes-btn" onclick="celebrate()">🥺 Of course</button>
+            </div>
+            <div id="celebration-msg"></div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
