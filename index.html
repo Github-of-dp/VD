@@ -20,15 +20,12 @@
     </section>
 
     <section id="page-2">
-        <div class="content">
-            <h2>This is a story about us.</h2>
-            <p>You get to choose how it continues...</p>
-            <div class="choice-bins">
-                <button onclick="nextPage(3)">I start smiling</button>
-                <button onclick="nextPage(3)">I fall a little harder</button>
-            </div>
-        </div>
-    </section>
+    <div class="content">
+        <h2>Our story isn't just a series of dates...</h2>
+        <p>It’s a collection of all the little ways you’ve changed my life.</p>
+        <button onclick="nextPage(3)">How have I changed it?</button>
+    </div>
+</section>
 
     <section id="page-3">
         <div class="content scrollable">
@@ -69,10 +66,10 @@
 
     <section id="page-6">
     <div class="content">
-        <h1 class="question-text">Will you be my Valentine? 💗</h1>
+        <h1>Will you be my Valentine?</h1>
         <div class="choice-bins">
-            <button class="yes-btn" onclick="celebrate('Yes!')">💘 Yes</button>
-            <button class="yes-btn" onclick="celebrate('Of course!')">🥺 Of course</button>
+            <button class="yes-btn" onclick="celebrate('Of Course')">Of course!</button>
+            <button id="no-btn" onmouseover="moveNoButton()">No</button>
         </div>
         <div id="celebration-msg"></div>
     </div>
