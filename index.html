@@ -3,63 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Story Under The Stars</title>
+    <title>For My Favorite Person</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body onclick="startMusic()">
 
     <div id="star-container"></div>
     <audio id="bg-music" loop></audio>
 
     <section id="page-1" class="active">
         <div class="content">
-            <h1>Hi, my favorite person.</h1>
-            <p>I made something small… just for you.</p>
-            <button onclick="nextPage(2)">🌟 Begin</button>
+            <h1 class="typewriter">Hi, my favorite person...</h1>
+            <p>I was thinking about us today, and I realized how much I wanted to tell you. I made this little space just for you to explore.</p>
+            <button onclick="nextPage(2)">🌟 Enter our world</button>
         </div>
     </section>
 
     <section id="page-2">
         <div class="content">
-            <h2>This is a story about us.</h2>
-            <p>It’s a collection of all the little ways you’ve changed my life.</p>
-            <button onclick="nextPage(3)">How have you changed it?</button>
+            <h2>You are my "once in a lifetime."</h2>
+            <p>They say people come into your life for a reason. With you, I didn't just find a reason—I found a home. Every conversation, every laugh, and even every quiet moment we share is a memory I keep tucked away in my heart.</p>
+            <button onclick="nextPage(3)">Read our story?</button>
         </div>
     </section>
 
     <section id="page-3">
         <div class="content">
-            <h2>Our Journey</h2>
+            <h2>The Chapters of Us</h2>
             <div class="chapter-box">
                 <div class="chapter">
-                    <h3>Chapter One: The Spark</h3>
-                    <p>The moment I realized talking to you felt like coming home. You have this way of making the world feel quiet and safe.</p>
+                    <h3>Chapter One: The Unspoken Spark</h3>
+                    <p>It wasn’t a lightning bolt; it was a slow, beautiful realization. One day I looked at you and realized that the world felt a little less chaotic when you were near. You have this magic in you that turns an ordinary day into something I never want to end.</p>
                 </div>
                 <div class="chapter">
-                    <h3>Chapter Two: The Growth</h3>
-                    <p>Learning your dreams and your fears made me realize I was finding a partner in everything.</p>
+                    <h3>Chapter Two: Finding My Person</h3>
+                    <p>As I got to know your dreams, your little habits, and the way your mind works, I realized I wasn’t just falling for you—I was finding my best friend. You’re the first person I want to tell my secrets to and the only person I want to dream with.</p>
                 </div>
                 <div class="chapter">
-                    <h3>Chapter Three: The Safe Haven</h3>
-                    <p>Through every high and low, you've been my peace. You are the first person I want to tell everything to.</p>
+                    <h3>Chapter Three: My Safe Haven</h3>
+                    <p>Through every high and every low, you’ve been my peace. You are my "safe place" in a world that never stops moving. Thank you for being the person who understands me even when I don't say a word.</p>
+                </div>
+                <div class="chapter">
+                    <h3>Chapter Four: To the Future</h3>
+                    <p>Our story is my favorite book, and the best part is that we’re still writing it. I can't wait for all the unwritten pages we get to fill together.</p>
                 </div>
             </div>
-            <button onclick="nextPage(4)">Wait, there's more...</button>
+            <button onclick="nextPage(4)">Look at the stars with me</button>
         </div>
     </section>
 
     <section id="page-4">
         <div class="content">
-            <p>Every star holds a thought I have about you.</p>
+            <p>If I could give you the stars, I would. But for now, click on these—each one is a tiny reason why you make me so incredibly happy.</p>
             <div id="star-messages-area"></div>
             <div id="star-msg-display"></div>
-            <button id="next-from-stars" style="display:none;" onclick="nextPage(5)">There’s one more thing...</button>
+            <button id="next-from-stars" style="display:none;" onclick="nextPage(5)">I have a secret...</button>
         </div>
     </section>
 
     <section id="page-5">
         <div class="content">
-            <h2>Let’s look at us.</h2>
+            <h2>Our Little Moments</h2>
+            <p>Before I ask you what’s on my mind, I wanted to remind you of 'us.' These aren't just photos; they are the moments where I felt the luckiest person alive.</p>
             <button id="drop-btn" onclick="dropPhotos()">Open memories 📂</button>
             <div id="photo-wall">
                 <div class="polaroid"><img src="assets/photo1.jpg"></div>
@@ -72,7 +77,9 @@
 
     <section id="page-6">
         <div class="content">
-            <h1>Will you be my Valentine? 💗</h1>
+            <h1>One last thing...</h1>
+            <p>You make every day feel like a celebration. I can't imagine spending this day with anyone but you.</p>
+            <h2 class="question-text">Will you be my Valentine? 💗</h2>
             <div class="btn-group">
                 <button class="yes-btn" onclick="celebrate()">Of course!</button>
                 <button id="no-btn" onmouseover="moveNoButton()">No</button>

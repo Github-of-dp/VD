@@ -1,7 +1,7 @@
 const audio = document.getElementById('bg-music');
 let noCount = 0;
+let musicStarted = false;
 
-// Update: Using your song names song1, song2, etc.
 const tracks = {
     1: 'assets/song1.mp3',
     2: 'assets/song2.mp3',
@@ -11,6 +11,14 @@ const tracks = {
     6: 'assets/song6.mp3'
 };
 
+function startMusic() {
+    if (!musicStarted) {
+        audio.src = tracks[1];
+        audio.play();
+        musicStarted = true;
+    }
+}
+
 function nextPage(pageNo) {
     document.querySelector('section.active').classList.remove('active');
     setTimeout(() => {
@@ -18,7 +26,7 @@ function nextPage(pageNo) {
         next.classList.add('active');
         if (tracks[pageNo]) {
             audio.src = tracks[pageNo];
-            audio.play().catch(() => console.log("User must interact first"));
+            audio.play().catch(() => console.log("Music blocked"));
         }
         if (pageNo === 4) createHeartShape();
     }, 100);
@@ -29,10 +37,14 @@ function createHeartShape() {
     const display = document.getElementById('star-msg-display');
     area.innerHTML = "";
     const complements = [
-        "Your smile is my favorite view", "I love the way you think", 
-        "You're my safest place", "You make life feel like a dream",
-        "I'm so proud of you", "You're my best friend",
-        "You're the most beautiful soul", "I love you more every day"
+        "The way you look at me makes me feel like I can do anything.",
+        "Your laugh is my absolute favorite sound in the world.",
+        "I love how I can be 100% myself when I'm with you.",
+        "You have the kindest heart I have ever known.",
+        "Thinking of you is the best part of my day.",
+        "I’m so proud of the person you are becoming.",
+        "You are the most beautiful person I know—inside and out.",
+        "I’m so lucky that I get to walk through life with you."
     ];
 
     for (let i = 0; i < 10; i++) {
@@ -84,7 +96,7 @@ function moveNoButton() {
 }
 
 function celebrate() {
-    document.getElementById('celebration-msg').innerHTML = "<h1>Yay! I love you! ❤️</h1>";
+    document.getElementById('celebration-msg').innerHTML = "<h1>Yay! You've made me the happiest person! ❤️</h1>";
     setInterval(() => {
         const c = document.createElement('div');
         c.className = 'confetti';
