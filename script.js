@@ -1,6 +1,35 @@
 let noCount = 0;
+const audio = document.getElementById('bg-music');
 
-// 1. Heart-Shaped Star Layout
+// MUSIC PATHS (Replace with your file names)
+const musicTracks = {
+    1: 'assets/song1.mp3',
+    2: 'assets/song2.mp3',
+    3: 'assets/song3.mp3',
+    4: 'assets/song4.mp3',
+    5: 'assets/song5.mp3',
+    6: 'assets/song6.mp3'
+};
+
+function nextPage(pageNo) {
+    const current = document.querySelector('section.active');
+    current.classList.remove('active');
+    
+    setTimeout(() => {
+        const next = document.getElementById(`page-${pageNo}`);
+        next.classList.add('active');
+
+        // Play music for that page
+        if (musicTracks[pageNo]) {
+            audio.src = musicTracks[pageNo];
+            audio.play().catch(e => console.log("Audio needs user click first"));
+        }
+
+        // Initialize heart stars if on page 4
+        if (pageNo === 4) createHeartStars();
+    }, 500);
+}
+
 function createHeartStars() {
     const area = document.getElementById('star-messages-area');
     area.innerHTML = "";
@@ -9,13 +38,13 @@ function createHeartStars() {
         "You are my safest place to be",
         "I love the way you think",
         "Every day with you is a gift",
-        "You're the most beautiful soul I know"
+        "You're the most beautiful soul I know",
+        "I'm so lucky to have you"
     ];
 
-    // Heart shape coordinates (x, y)
     const points = [
-        {x: 50, y: 15}, {x: 20, y: 25}, {x: 80, y: 25},
-        {x: 10, y: 50}, {x: 90, y: 50}, {x: 50, y: 90}
+        {x: 50, y: 15}, {x: 25, y: 25}, {x: 75, y: 25},
+        {x: 15, y: 50}, {x: 85, y: 50}, {x: 50, y: 85}
     ];
 
     points.forEach((p, i) => {
@@ -25,70 +54,60 @@ function createHeartStars() {
         star.style.left = p.x + "%";
         star.style.top = p.y + "%";
         
-        star.onclick = (e) => {
+        star.onclick = () => {
             const existing = document.querySelector('.scroll-msg');
             if(existing) existing.remove();
             
             let scroll = document.createElement('div');
             scroll.className = 'scroll-msg';
-            scroll.innerText = complements[i % complements.length];
+            scroll.innerText = complements[i];
             area.appendChild(scroll);
             
-            if(i === points.length - 1) document.getElementById('next-from-stars').style.display = "block";
+            // Show next button after clicking a few stars
+            if(i >= points.length - 2) document.getElementById('next-from-stars').style.display = "block";
         };
         area.appendChild(star);
     });
 }
 
-// 2. The Escaping No Button
+function dropPhotos() {
+    document.getElementById('drop-btn').style.display = "none";
+    const photos = document.querySelectorAll('.polaroid');
+    photos.forEach((p, i) => {
+        setTimeout(() => {
+            p.style.transform = `translateY(0) rotate(${Math.random() * 20 - 10}deg)`;
+        }, i * 500);
+    });
+    setTimeout(() => {
+        document.getElementById('final-btn').style.display = "block";
+    }, photos.length * 500 + 1000);
+}
+
 function moveNoButton() {
     noCount++;
-    if (noCount < 4) {
-        const x = Math.random() * (window.innerWidth - 100);
-        const y = Math.random() * (window.innerHeight - 100);
+    if (noCount < 5) {
+        const x = Math.random() * (window.innerWidth - 150);
+        const y = Math.random() * (window.innerHeight - 150);
         const btn = document.getElementById('no-btn');
         btn.style.position = 'fixed';
         btn.style.left = x + 'px';
         btn.style.top = y + 'px';
     } else {
-        alert("Okay, okay... fine! But I know you want to say yes 😉");
-        celebrate("No (but I forced her)");
+        document.getElementById('no-btn').style.display = 'none';
     }
 }
 
-// 3. Confetti Effect
 function celebrate(choice) {
-    const duration = 15 * 1000;
-    const animationEnd = Date.now() + duration;
-    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
-
-    function randomInRange(min, max) { return Math.random() * (max - min) + min; }
-
-    const interval = setInterval(function() {
-        const timeLeft = animationEnd - Date.now();
-        if (timeLeft <= 0) return clearInterval(interval);
-
-        const particleCount = 50 * (timeLeft / duration);
-        // Using a simple heart emoji confetti trick
-        createHeartConfetti();
-    }, 250);
-
-    document.getElementById('celebration-msg').innerHTML = "<h2>Yay! You're my Valentine! ❤️</h2>";
-    // Send to Formspree/WhatsApp here...
+    document.getElementById('celebration-msg').innerHTML = "<h2>Yay! You just made me the happiest person! ❤️</h2>";
+    setInterval(createHeartConfetti, 300);
 }
 
 function createHeartConfetti() {
     const heart = document.createElement('div');
     heart.innerHTML = "❤️";
-    heart.style.position = "fixed";
+    heart.className = "confetti-heart";
     heart.style.left = Math.random() * 100 + "vw";
-    heart.style.top = "-10vh";
     heart.style.fontSize = Math.random() * 20 + 10 + "px";
-    heart.style.transition = "transform 3s linear, opacity 3s";
     document.body.appendChild(heart);
-    
-    setTimeout(() => {
-        heart.style.transform = `translateY(110vh) rotate(${Math.random() * 360}deg)`;
-        heart.style.opacity = "0";
-    }, 100);
+    setTimeout(() => heart.remove(), 4000);
 }
