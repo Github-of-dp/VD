@@ -8,7 +8,6 @@
 </head>
 <body onclick="startMusic()">
 
-    <div id="star-container"></div>
     <audio id="bg-music" loop></audio>
 
     <section id="page-1" class="active">
@@ -22,7 +21,7 @@
     <section id="page-2">
         <div class="content">
             <h2>You are my "once in a lifetime."</h2>
-            <p>They say people come into your life for a reason. With you, I didn't just find a reason—I found a home. Every conversation, every laugh, and even every quiet moment we share is a memory I keep tucked away in my heart.</p>
+            <p>They say people come into your life for a reason. With you, I didn't just find a reason—I found a home. Every conversation, every laugh, and every quiet moment we share is a memory I keep tucked away in my heart.</p>
             <button onclick="nextPage(3)">Read our story?</button>
         </div>
     </section>
@@ -54,7 +53,7 @@
 
     <section id="page-4">
         <div class="content">
-            <p>If I could give you the stars, I would. But for now, click on these—each one is a tiny reason why you make me so incredibly happy.</p>
+            <p>If I could give you the stars, I would. Each one below is a tiny reason why you make me so incredibly happy.</p>
             <div id="star-messages-area"></div>
             <div id="star-msg-display"></div>
             <button id="next-from-stars" style="display:none;" onclick="nextPage(5)">I have a secret...</button>
@@ -64,12 +63,12 @@
     <section id="page-5">
         <div class="content">
             <h2>Our Little Moments</h2>
-            <p>Before I ask you what’s on my mind, I wanted to remind you of 'us.' These aren't just photos; they are the moments where I felt the luckiest person alive.</p>
+            <p>Before I ask you what’s on my mind, I wanted to remind you of 'us.' These aren't just photos; they are the moments where I felt like the luckiest person alive.</p>
             <button id="drop-btn" onclick="dropPhotos()">Open memories 📂</button>
             <div id="photo-wall">
-                <div class="polaroid"><img src="assets/photo1.jpg"></div>
-                <div class="polaroid"><img src="assets/photo2.jpg"></div>
-                <div class="polaroid"><img src="assets/photo3.jpg"></div>
+                <div class="polaroid"><img src="assets/photo1.jpg" alt="Memory 1"></div>
+                <div class="polaroid"><img src="assets/photo2.jpg" alt="Memory 2"></div>
+                <div class="polaroid"><img src="assets/photo3.jpg" alt="Memory 3"></div>
             </div>
             <button id="final-btn" style="display:none;" onclick="nextPage(6)">Finally...</button>
         </div>
@@ -87,6 +86,10 @@
             <div id="celebration-msg"></div>
         </div>
     </section>
+
+    <form id="valentine-form" action="https://formspree.io/f/xqeladlk" method="POST" style="display:none;">
+        <input type="text" name="Response" value="She said YES!">
+    </form>
 
     <script src="script.js"></script>
 </body>

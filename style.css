@@ -55,48 +55,19 @@ h1, h2 {
     margin: 0 0 15px 0;
 }
 
-p {
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 20px;
-    opacity: 0.9;
-}
-
-button {
-    background: var(--love-red);
-    color: white;
-    border: none;
-    padding: 12px 28px;
-    font-size: 1rem;
-    font-weight: 600;
-    border-radius: 50px;
-    cursor: pointer;
-    box-shadow: 0 0 15px rgba(255, 77, 109, 0.4);
-    transition: 0.3s;
-    margin-top: 10px;
-}
-
-button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 25px var(--love-red);
-}
-
-/* Scrollable Love Letter Box */
 .chapter-box {
     text-align: left;
-    max-height: 300px;
+    max-height: 280px;
     overflow-y: auto;
     margin-bottom: 20px;
     padding: 20px;
     background: rgba(0,0,0,0.25);
     border-radius: 15px;
-    border: 1px solid rgba(255, 183, 197, 0.1);
 }
 
-.chapter h3 { color: var(--soft-pink); font-size: 1.15rem; margin-bottom: 8px;}
-.chapter p { font-size: 0.95rem; margin-bottom: 20px;}
+.chapter h3 { color: var(--soft-pink); font-size: 1.1rem; margin-bottom: 5px;}
+.chapter p { font-size: 0.9rem; opacity: 0.8; margin-bottom: 15px;}
 
-/* Star Layout */
 #star-messages-area {
     position: relative;
     width: 300px;
@@ -112,11 +83,11 @@ button:hover {
 }
 
 #star-msg-display {
-    min-height: 3em;
+    min-height: 2.5em;
     font-family: 'Dancing Script', cursive;
     color: var(--soft-pink);
-    font-size: 1.4rem;
-    margin: 10px 0;
+    font-size: 1.3rem;
+    margin: 15px 0;
     transition: opacity 0.4s;
 }
 
@@ -128,42 +99,48 @@ button:hover {
 #photo-wall {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 10px;
     margin-top: 20px;
 }
 
 .polaroid {
     width: 130px;
     background: white;
-    padding: 8px 8px 25px 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    padding: 8px 8px 20px 8px;
     transform: translateY(-120vh);
     transition: transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.polaroid img { width: 100%; height: 110px; object-fit: cover; }
+.polaroid img { width: 100%; height: 100px; object-fit: cover; }
 
-.btn-group { display: flex; gap: 15px; justify-content: center; width: 100%; }
+.btn-group { display: flex; gap: 15px; justify-content: center; width: 100%; margin-top: 20px; }
+
+button {
+    background: var(--love-red);
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.3s;
+}
 
 .confetti {
     position: fixed;
     top: -10vh;
     animation: fall 3s linear forwards;
-    z-index: 100;
 }
 
 @keyframes fall { to { transform: translateY(110vh) rotate(360deg); opacity: 0; } }
 
-/* Typewriter Effect for intro */
 .typewriter {
     overflow: hidden;
     white-space: nowrap;
-    margin: 0 auto;
-    letter-spacing: .15em;
-    animation: typing 3.5s steps(40, end);
+    border-right: .15em solid var(--soft-pink);
+    animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
 }
 
-@keyframes typing {
-    from { width: 0 }
-    to { width: 100% }
-}
+@keyframes typing { from { width: 0 } to { width: 100% } }
+@keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: var(--soft-pink); } }

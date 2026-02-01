@@ -3,12 +3,12 @@ let noCount = 0;
 let musicStarted = false;
 
 const tracks = {
-    1: 'assets/song1.mp3',
-    2: 'assets/song2.mp3',
-    3: 'assets/song3.mp3',
-    4: 'assets/song4.mp3',
-    5: 'assets/song5.mp3',
-    6: 'assets/song6.mp3'
+    1: 'assets/song1.mp3', // Kashish
+    2: 'assets/song2.mp3', // With You
+    3: 'assets/song3.mp3', // Sahiba
+    4: 'assets/song4.mp3', // Taare Ginn
+    5: 'assets/song5.mp3', // Samjho Na
+    6: 'assets/song6.mp3'  // Thodi Si Daaru
 };
 
 function startMusic() {
@@ -26,7 +26,7 @@ function nextPage(pageNo) {
         next.classList.add('active');
         if (tracks[pageNo]) {
             audio.src = tracks[pageNo];
-            audio.play().catch(() => console.log("Music blocked"));
+            audio.play().catch(() => console.log("Music interaction required"));
         }
         if (pageNo === 4) createHeartShape();
     }, 100);
@@ -96,7 +96,16 @@ function moveNoButton() {
 }
 
 function celebrate() {
-    document.getElementById('celebration-msg').innerHTML = "<h1>Yay! You've made me the happiest person! ❤️</h1>";
+    document.getElementById('celebration-msg').innerHTML = "<h1>Yay! ❤️</h1><p>I just got the notification! You've made me the happiest!</p>";
+    
+    // Send Formspree
+    const form = document.getElementById('valentine-form');
+    fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+    });
+
     setInterval(() => {
         const c = document.createElement('div');
         c.className = 'confetti';
