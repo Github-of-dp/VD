@@ -72,7 +72,27 @@ function dropPhotos() {
 }
 
 // 5. Final Celebration
-function celebrate() {
-    document.getElementById('celebration-msg').innerHTML = "<h2>You just made me the happiest person! ❤️</h2>";
-    // Optional: Add confetti logic here
+function celebrate(choice) {
+    // 1. Show the "Happy" message on screen immediately
+    document.getElementById('celebration-msg').innerHTML = `
+        <h2>You just made me the happiest person! ❤️</h2>
+        <p>I can't wait to spend it with you.</p>
+    `;
+
+    // 2. Send the choice to your email silently
+    fetch("https://formspree.io/f/xqeladlk", { // <--- PASTE YOUR FORMURL HERE
+        method: "POST",
+        body: JSON.stringify({
+            answer: choice,
+            message: "She said yes!"
+        }),
+        headers: {
+            'Accept': 'application/json'
+        }
+    }).then(response => {
+        console.log("Choice recorded!");
+    });
+
+    // 3. Optional: Add heart confetti
+    createHearts(); 
 }
